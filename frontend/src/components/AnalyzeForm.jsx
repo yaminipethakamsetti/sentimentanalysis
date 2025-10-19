@@ -36,18 +36,19 @@ export default function AnalyzeForm({ onResult }){
   }
 
   return (
-    <form onSubmit={submit} className="analyze-form">
+    <form onSubmit={submit} className="analyze-form" aria-label="Analyze text">
       <textarea
         rows={6}
         value={text}
         onChange={e => setText(e.target.value)}
         placeholder="Type or paste text to analyze..."
+        aria-label="Text to analyze"
       />
       <div className="controls">
-        <button type="submit" disabled={loading || !text.trim()}>
+        <button type="submit" disabled={loading || !text.trim()} aria-busy={loading}>
           {loading ? 'Analyzing…' : 'Analyze'}
         </button>
-        {error && <div className="error">{error}</div>}
+        {error && <div className="error" role="status">{error}</div>}
       </div>
     </form>
   )
